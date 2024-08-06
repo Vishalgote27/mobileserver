@@ -13,11 +13,12 @@ exports.getUserType = async (req, res) => {
     try {
         const { userId } = req.body
         // console.log(userId);
-        const result = await Typeuser.find({ userId });
+        // const result = await Typeuser.find({ userId });
+        const result = await Typeuser.find();
 
-        if (!result) {
-            return res.status(404).json({ message: "User type not found" });
-        }
+        // if (!result) {
+        //     return res.status(404).json({ message: "User type not found" });
+        // }
         // const result = await Typeuser.find()
         res.json({ message: "All User Type add Successfully", result })
     } catch (error) {
@@ -39,14 +40,17 @@ exports.editUserType = async (req, res) => {
 exports.deleteUserType = async (req, res) => {
     try {
         const { id } = req.params
+        console.log(id);
+
         const result = await Typeuser.findByIdAndDelete(id)
-        res.json({
+        console.log(result);
+
+        res.status(200).json({
             message: "Type Delete Success",
             result
         })
     } catch (error) {
-        console.log(error);
-        res.json({ message: "error", error })
+        res.status(401).json({ message: "Unble to User Delete" + error })
     }
 }
 

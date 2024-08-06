@@ -7,6 +7,6 @@ router
     .post("/add-type", addUserType)
     .get("/", getUserType)
     .put("/edit/:id", editUserType)
-// .put("/soft/:id", softDeleteUserType)
+    .delete("/remove/:id", deleteUserType)
 
 module.exports = router
